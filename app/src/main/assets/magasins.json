@@ -1,0 +1,636 @@
+{
+    "magasins": [
+        {
+            "nom": "TicTac Toulouse",
+            "adresse": "60 Rue de Toulouse",
+            "latitude": 43.609082,
+            "longitude": 1.439927,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Omega Speedmaster",
+                "Seiko 5",
+                "Rolex Submariner"
+            ]
+        },
+        {
+            "nom": "L'Horlogerie Fine",
+            "adresse": "68 Rue de Toulouse",
+            "latitude": 43.595367,
+            "longitude": 1.435453,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Tissot PRX",
+                "Casio G-Shock",
+                "Omega Speedmaster",
+                "Seiko 5"
+            ]
+        },
+        {
+            "nom": "Montres et Tradition",
+            "adresse": "92 Rue de Toulouse",
+            "latitude": 43.610945,
+            "longitude": 1.451714,
+            "passion": "Montres",
+            "partenaire": false
+        },
+        {
+            "nom": "Le Temps Suspendu",
+            "adresse": "34 Rue de Toulouse",
+            "latitude": 43.611463,
+            "longitude": 1.450087,
+            "passion": "Montres",
+            "partenaire": false
+        },
+        {
+            "nom": "La Fabrique du Temps",
+            "adresse": "43 Rue de Toulouse",
+            "latitude": 43.608464,
+            "longitude": 1.438041,
+            "passion": "Montres",
+            "partenaire": false
+        },
+        {
+            "nom": "L’Atelier de l’Aiguille",
+            "adresse": "79 Rue de Toulouse",
+            "latitude": 43.608647,
+            "longitude": 1.434721,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Omega Speedmaster",
+                "Casio G-Shock",
+                "Rolex Submariner"
+            ]
+        },
+        {
+            "nom": "Montre-moi",
+            "adresse": "55 Rue de Toulouse",
+            "latitude": 43.61172,
+            "longitude": 1.453335,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Omega Speedmaster",
+                "Casio G-Shock"
+            ]
+        },
+        {
+            "nom": "Chic & Tocs",
+            "adresse": "80 Rue de Toulouse",
+            "latitude": 43.59757,
+            "longitude": 1.439072,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Seiko 5",
+                "Casio G-Shock",
+                "Omega Speedmaster"
+            ]
+        },
+        {
+            "nom": "Les Aiguilles d’Or",
+            "adresse": "86 Rue de Toulouse",
+            "latitude": 43.601071,
+            "longitude": 1.438129,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Rolex Submariner",
+                "Tissot PRX",
+                "Casio G-Shock",
+                "Omega Speedmaster"
+            ]
+        },
+        {
+            "nom": "Seconde Vie",
+            "adresse": "31 Rue de Toulouse",
+            "latitude": 43.599271,
+            "longitude": 1.443053,
+            "passion": "Montres",
+            "partenaire": false
+        },
+        {
+            "nom": "Chrono Passion",
+            "adresse": "51 Rue de Toulouse",
+            "latitude": 43.606367,
+            "longitude": 1.451122,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Seiko 5",
+                "Casio G-Shock",
+                "Omega Speedmaster",
+                "Tissot PRX"
+            ]
+        },
+        {
+            "nom": "Le Temps Retrouvé",
+            "adresse": "80 Rue de Toulouse",
+            "latitude": 43.59966,
+            "longitude": 1.450479,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Tissot PRX",
+                "Seiko 5"
+            ]
+        },
+        {
+            "nom": "Horlogerie du Capitole",
+            "adresse": "33 Rue de Toulouse",
+            "latitude": 43.602937,
+            "longitude": 1.444651,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Rolex Submariner",
+                "Omega Speedmaster"
+            ]
+        },
+        {
+            "nom": "L’Heure Juste",
+            "adresse": "17 Rue de Toulouse",
+            "latitude": 43.602235,
+            "longitude": 1.446489,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Casio G-Shock",
+                "Tissot PRX",
+                "Omega Speedmaster",
+                "Seiko 5"
+            ]
+        },
+        {
+            "nom": "Mécanisme Urbain",
+            "adresse": "32 Rue de Toulouse",
+            "latitude": 43.610507,
+            "longitude": 1.439237,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Seiko 5",
+                "Omega Speedmaster"
+            ]
+        },
+        {
+            "nom": "Précision & Style",
+            "adresse": "34 Rue de Toulouse",
+            "latitude": 43.611795,
+            "longitude": 1.451897,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Tissot PRX",
+                "Seiko 5"
+            ]
+        },
+        {
+            "nom": "La Trotteuse",
+            "adresse": "1 Rue de Toulouse",
+            "latitude": 43.596152,
+            "longitude": 1.437353,
+            "passion": "Montres",
+            "partenaire": false
+        },
+        {
+            "nom": "L’Heure Bleue",
+            "adresse": "53 Rue de Toulouse",
+            "latitude": 43.605214,
+            "longitude": 1.448002,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Tissot PRX",
+                "Casio G-Shock",
+                "Seiko 5",
+                "Rolex Submariner"
+            ]
+        },
+        {
+            "nom": "Le Compteur",
+            "adresse": "44 Rue de Toulouse",
+            "latitude": 43.595771,
+            "longitude": 1.444559,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Rolex Submariner",
+                "Casio G-Shock",
+                "Tissot PRX",
+                "Seiko 5"
+            ]
+        },
+        {
+            "nom": "Montres Authentiques",
+            "adresse": "51 Rue de Toulouse",
+            "latitude": 43.597034,
+            "longitude": 1.437475,
+            "passion": "Montres",
+            "partenaire": true,
+            "stock": [
+                "Casio G-Shock",
+                "Tissot PRX",
+                "Seiko 5",
+                "Rolex Submariner"
+            ]
+        },
+        {
+            "nom": "Toulouse Sport Center",
+            "adresse": "93 Rue de Toulouse",
+            "latitude": 43.596451,
+            "longitude": 1.450389,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Capitole Fitness",
+            "adresse": "11 Rue de Toulouse",
+            "latitude": 43.606674,
+            "longitude": 1.441556,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Courir Plus Vite",
+            "adresse": "10 Rue de Toulouse",
+            "latitude": 43.611253,
+            "longitude": 1.453911,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Sport & Santé",
+            "adresse": "60 Rue de Toulouse",
+            "latitude": 43.595257,
+            "longitude": 1.444089,
+            "passion": "Sport",
+            "partenaire": true,
+            "stock": [
+                "Gants de boxe",
+                "Haltères"
+            ]
+        },
+        {
+            "nom": "Énergie Active",
+            "adresse": "93 Rue de Toulouse",
+            "latitude": 43.607475,
+            "longitude": 1.436688,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Stadium Shop",
+            "adresse": "32 Rue de Toulouse",
+            "latitude": 43.607996,
+            "longitude": 1.448694,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Le Vestiaire",
+            "adresse": "96 Rue de Toulouse",
+            "latitude": 43.604341,
+            "longitude": 1.444799,
+            "passion": "Sport",
+            "partenaire": true,
+            "stock": [
+                "Haltères",
+                "Chaussures de course",
+                "Gants de boxe",
+                "Tapis de yoga"
+            ]
+        },
+        {
+            "nom": "Sport Attitude",
+            "adresse": "62 Rue de Toulouse",
+            "latitude": 43.602636,
+            "longitude": 1.439635,
+            "passion": "Sport",
+            "partenaire": true,
+            "stock": [
+                "Gants de boxe",
+                "Haltères",
+                "Tapis de yoga"
+            ]
+        },
+        {
+            "nom": "Urban Training",
+            "adresse": "10 Rue de Toulouse",
+            "latitude": 43.614172,
+            "longitude": 1.453263,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Team Spirit",
+            "adresse": "65 Rue de Toulouse",
+            "latitude": 43.600194,
+            "longitude": 1.448807,
+            "passion": "Sport",
+            "partenaire": true,
+            "stock": [
+                "Chaussures de course",
+                "Ballon de foot"
+            ]
+        },
+        {
+            "nom": "Athlé Pro",
+            "adresse": "91 Rue de Toulouse",
+            "latitude": 43.613294,
+            "longitude": 1.443849,
+            "passion": "Sport",
+            "partenaire": true,
+            "stock": [
+                "Ballon de foot",
+                "Chaussures de course",
+                "Gants de boxe"
+            ]
+        },
+        {
+            "nom": "Fitness World",
+            "adresse": "73 Rue de Toulouse",
+            "latitude": 43.614255,
+            "longitude": 1.448333,
+            "passion": "Sport",
+            "partenaire": true,
+            "stock": [
+                "Chaussures de course",
+                "Haltères",
+                "Gants de boxe",
+                "Tapis de yoga"
+            ]
+        },
+        {
+            "nom": "Pro du Ballon",
+            "adresse": "76 Rue de Toulouse",
+            "latitude": 43.609573,
+            "longitude": 1.449033,
+            "passion": "Sport",
+            "partenaire": true,
+            "stock": [
+                "Haltères",
+                "Gants de boxe",
+                "Tapis de yoga"
+            ]
+        },
+        {
+            "nom": "Passion Foot",
+            "adresse": "18 Rue de Toulouse",
+            "latitude": 43.59622,
+            "longitude": 1.434297,
+            "passion": "Sport",
+            "partenaire": true,
+            "stock": [
+                "Tapis de yoga",
+                "Haltères"
+            ]
+        },
+        {
+            "nom": "La Boutique du Running",
+            "adresse": "36 Rue de Toulouse",
+            "latitude": 43.61106,
+            "longitude": 1.450823,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Sport 31",
+            "adresse": "23 Rue de Toulouse",
+            "latitude": 43.612822,
+            "longitude": 1.444104,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Boxe Club",
+            "adresse": "56 Rue de Toulouse",
+            "latitude": 43.611162,
+            "longitude": 1.450703,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Tennis Store",
+            "adresse": "96 Rue de Toulouse",
+            "latitude": 43.595687,
+            "longitude": 1.448969,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Glisse & Ride",
+            "adresse": "53 Rue de Toulouse",
+            "latitude": 43.612731,
+            "longitude": 1.449944,
+            "passion": "Sport",
+            "partenaire": false
+        },
+        {
+            "nom": "Sportmax Toulouse",
+            "adresse": "56 Rue de Toulouse",
+            "latitude": 43.614243,
+            "longitude": 1.436764,
+            "passion": "Sport",
+            "partenaire": true,
+            "stock": [
+                "Ballon de foot",
+                "Gants de boxe",
+                "Haltères",
+                "Tapis de yoga"
+            ]
+        },
+        {
+            "nom": "La Page Tournante",
+            "adresse": "23 Rue de Toulouse",
+            "latitude": 43.606124,
+            "longitude": 1.449327,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Livres & Vous",
+            "adresse": "7 Rue de Toulouse",
+            "latitude": 43.605487,
+            "longitude": 1.438851,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Bouquins Capitole",
+            "adresse": "85 Rue de Toulouse",
+            "latitude": 43.605939,
+            "longitude": 1.438343,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Lecture Moderne",
+            "adresse": "13 Rue de Toulouse",
+            "latitude": 43.595612,
+            "longitude": 1.446294,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Rêves de Livres",
+            "adresse": "100 Rue de Toulouse",
+            "latitude": 43.611294,
+            "longitude": 1.43887,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "L’Univers des Mots",
+            "adresse": "73 Rue de Toulouse",
+            "latitude": 43.611738,
+            "longitude": 1.441766,
+            "passion": "Lecture",
+            "partenaire": true,
+            "stock": [
+                "L'Étranger - Camus",
+                "Harry Potter",
+                "Les Misérables",
+                "1984 - Orwell"
+            ]
+        },
+        {
+            "nom": "Papeterie Passion",
+            "adresse": "70 Rue de Toulouse",
+            "latitude": 43.60075,
+            "longitude": 1.439667,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Bouquin Passion",
+            "adresse": "12 Rue de Toulouse",
+            "latitude": 43.609807,
+            "longitude": 1.449037,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Lire et Écrire",
+            "adresse": "4 Rue de Toulouse",
+            "latitude": 43.599018,
+            "longitude": 1.444428,
+            "passion": "Lecture",
+            "partenaire": true,
+            "stock": [
+                "L'Étranger - Camus",
+                "Les Misérables",
+                "Harry Potter",
+                "1984 - Orwell"
+            ]
+        },
+        {
+            "nom": "L’Attrape-livres",
+            "adresse": "63 Rue de Toulouse",
+            "latitude": 43.601009,
+            "longitude": 1.437589,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Librairie du Centre",
+            "adresse": "10 Rue de Toulouse",
+            "latitude": 43.601844,
+            "longitude": 1.449933,
+            "passion": "Lecture",
+            "partenaire": true,
+            "stock": [
+                "Les Misérables",
+                "Le Petit Prince",
+                "Harry Potter"
+            ]
+        },
+        {
+            "nom": "Livres Nomades",
+            "adresse": "77 Rue de Toulouse",
+            "latitude": 43.607461,
+            "longitude": 1.43906,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Les Mots Doux",
+            "adresse": "72 Rue de Toulouse",
+            "latitude": 43.610748,
+            "longitude": 1.444483,
+            "passion": "Lecture",
+            "partenaire": true,
+            "stock": [
+                "L'Étranger - Camus",
+                "Le Petit Prince",
+                "Les Misérables"
+            ]
+        },
+        {
+            "nom": "Bulle de Lecture",
+            "adresse": "8 Rue de Toulouse",
+            "latitude": 43.595675,
+            "longitude": 1.43965,
+            "passion": "Lecture",
+            "partenaire": true,
+            "stock": [
+                "Le Petit Prince",
+                "1984 - Orwell"
+            ]
+        },
+        {
+            "nom": "Contes & Romans",
+            "adresse": "100 Rue de Toulouse",
+            "latitude": 43.597028,
+            "longitude": 1.451773,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Le Livre Volant",
+            "adresse": "46 Rue de Toulouse",
+            "latitude": 43.595968,
+            "longitude": 1.4343,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Feuille et Plume",
+            "adresse": "89 Rue de Toulouse",
+            "latitude": 43.607615,
+            "longitude": 1.435779,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Papyrus",
+            "adresse": "18 Rue de Toulouse",
+            "latitude": 43.612324,
+            "longitude": 1.45067,
+            "passion": "Lecture",
+            "partenaire": true,
+            "stock": [
+                "1984 - Orwell",
+                "Harry Potter"
+            ]
+        },
+        {
+            "nom": "Les Classiques",
+            "adresse": "45 Rue de Toulouse",
+            "latitude": 43.595037,
+            "longitude": 1.448814,
+            "passion": "Lecture",
+            "partenaire": false
+        },
+        {
+            "nom": "Pages d'Or",
+            "adresse": "50 Rue de Toulouse",
+            "latitude": 43.605146,
+            "longitude": 1.4509,
+            "passion": "Lecture",
+            "partenaire": false
+        }
+    ]
+}
