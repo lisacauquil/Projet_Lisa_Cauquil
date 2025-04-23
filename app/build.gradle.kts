@@ -53,5 +53,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation ("com.google.code.gson:gson:2.11.0")
+    implementation ("androidx.fragment:fragment-ktx:1.6.2")
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+
 
 }
