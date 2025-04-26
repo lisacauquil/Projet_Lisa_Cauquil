@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.data.model.Magasin
+import com.example.myapplication.ui.details.MagasinDetailActivity
 
 class ListFragment : Fragment() {
 
@@ -16,7 +18,7 @@ class ListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        magasins = arguments?.getSerializable("magasins") as List<Magasin>
+        magasins = arguments?.getSerializable("magasins") as? List<Magasin> ?: emptyList()
     }
 
     override fun onCreateView(
@@ -29,6 +31,9 @@ class ListFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_magasin)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = MagasinAdapter(magasins) { magasin ->
+            val intent = Intent(requireContext(), MagasinDetailActivity::class.java)
+            intent.putExtra("magasin", magasin)
+            startActivity(intent)
         }
 
         return view

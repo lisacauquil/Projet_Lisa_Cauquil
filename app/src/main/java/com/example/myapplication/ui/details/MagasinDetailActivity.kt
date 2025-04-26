@@ -11,34 +11,43 @@ import com.example.myapplication.data.model.Magasin
 
 class MagasinDetailActivity : AppCompatActivity() {
 
+    private var magasin: Magasin? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_magasin_detail)
 
-        val magasin = intent.getSerializableExtra("magasin") as? Magasin
+        val buttonRetour = findViewById<Button>(R.id.button_retour)
+        val buttonItineraire = findViewById<Button>(R.id.button_itineraire)
+        val nom = findViewById<TextView>(R.id.text_nom_magasin)
+        val adresse = findViewById<TextView>(R.id.text_adresse_magasin)
+        val stock = findViewById<TextView>(R.id.text_stock_magasin)
 
-        val textNom = findViewById<TextView>(R.id.text_nom)
-        val textAdresse = findViewById<TextView>(R.id.text_adresse)
-        val textStock = findViewById<TextView>(R.id.text_stock)
-        val btnMap = findViewById<Button>(R.id.button_itineraire)
-        val btnCompass = findViewById<Button>(R.id.button_boussole)
+        magasin = intent.getSerializableExtra("magasin") as? Magasin
 
         magasin?.let {
-            textNom.text = it.nom
-            textAdresse.text = it.adresse
-            textStock.text = if (it.partenaire) it.stock?.joinToString("\n") ?: "" else "Non partenaire"
+            nom.text = it.nom
+            adresse.text = it.adresse
 
-            btnMap.setOnClickListener {
-                val uri = "google.navigation:q=${magasin.latitude},${magasin.longitude}"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-                intent.setPackage("com.google.android.apps.maps")
-                startActivity(intent)
+            if (it.partenaire && it.stock != null) {
+                stock.text = "Stock disponible :\n" + it.stock.joinToString("\n")
+            } else {
+                stock.text = "Non partenaire ou stock indisponible"
             }
+        }
 
-            btnCompass.setOnClickListener {
-                val intent = Intent(this, CompassActivity::class.java)
-                intent.putExtra("magasin", magasin)
-                startActivity(intent)
+        buttonRetour.setOnClickListener {
+            finish()
+        }
+
+        buttonItineraire.setOnClickListener {
+            magasin?.let {
+                val gmmIntentUri = Uri.parse("geo:${it.latitude},${it.longitude}?q=${it.latitude},${it.longitude}(${Uri.encode(it.nom)})")
+                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                mapIntent.setPackage("com.google.android.apps.maps")
+                if (mapIntent.resolveActivity(packageManager) != null) {
+                    startActivity(mapIntent)
+                }
             }
         }
     }
