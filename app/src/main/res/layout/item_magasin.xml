@@ -9,17 +9,26 @@
 
     <TextView
         android:id="@+id/nom_magasin"
-        android:text="Nom"
+        android:text="Nom du magasin"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/rose_fonce"
+        android:layout_marginBottom="8dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/adresse_magasin"
         android:text="Adresse"
         android:textColor="@color/texte"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/stock_magasin"
+        android:text="Stock"
+        android:textColor="@color/texte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

@@ -8,6 +8,6 @@ data class Magasin(
     val latitude: Double,
     val longitude: Double,
     val passion: String,
-    val partenaire: Boolean,
-    val stock: List<String>? = null
-): Serializable
+    val partenaire: Boolean = false,
+    val stock: List<String> = emptyList()
+) : Serializable

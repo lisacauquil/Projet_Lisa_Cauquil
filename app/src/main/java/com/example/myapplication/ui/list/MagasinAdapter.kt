@@ -22,6 +22,8 @@ class MagasinAdapter(
         val magasin = magasins[position]
         holder.nom.text = magasin.nom
         holder.adresse.text = magasin.adresse
+        holder.stock.text = "Stock : ${magasin.stock.joinToString(", ")}"
+
         holder.itemView.setOnClickListener { onClick(magasin) }
     }
 
@@ -30,5 +32,6 @@ class MagasinAdapter(
     class MagasinViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nom: TextView = view.findViewById(R.id.nom_magasin)
         val adresse: TextView = view.findViewById(R.id.adresse_magasin)
+        val stock: TextView = view.findViewById(R.id.stock_magasin)
     }
 }
