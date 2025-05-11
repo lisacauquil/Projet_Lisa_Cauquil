@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tvInstructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Instructions"
+        android:textSize="16sp"
+        android:paddingBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btnDrive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voiture"/>
+
+    <Button
+        android:id="@+id/btnWalk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="À pied"/>
+</LinearLayout>

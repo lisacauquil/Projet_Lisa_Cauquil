@@ -4,4 +4,8 @@
     <color name="rose_fonce">#AD1457</color>
     <color name="fond_clair">#FFF5F8</color>
     <color name="texte">#333333</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="black">#000000</color>
+    <color name="orange_500">#FF5722</color>
 </resources>

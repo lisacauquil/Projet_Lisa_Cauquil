@@ -1,52 +1,55 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/fond_clair"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    tools:context=".ui.detail.MagasinDetailActivity"
+    android:padding="16dp">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tvMagasinNom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom du magasin"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/text_nom"
-            android:textSize="20sp"
-            android:textColor="@color/rose_fonce"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvMagasinAdresse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adresse"
+        app:layout_constraintTop_toBottomOf="@id/tvMagasinNom"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <TextView
-            android:id="@+id/text_adresse"
-            android:layout_marginBottom="16dp"
-            android:textColor="@color/texte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvMagasinPassion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passion"
+        app:layout_constraintTop_toBottomOf="@id/tvMagasinAdresse"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <TextView
-            android:id="@+id/text_stock"
-            android:textColor="@color/texte"
-            android:layout_marginBottom="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvMagasinStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stock disponible :"
+        app:layout_constraintTop_toBottomOf="@id/tvMagasinPassion"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"/>
 
-        <Button
-            android:id="@+id/button_itineraire"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:text="Voir l'itinéraire"
-            android:backgroundTint="@color/rose"
-            android:textColor="@android:color/white"/>
+    <Button
+        android:id="@+id/btnItineraire"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Itinéraire"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
-            android:id="@+id/button_boussole"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ouvrir la boussole"
-            android:backgroundTint="@color/rose_fonce"
-            android:textColor="@android:color/white"/>
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
