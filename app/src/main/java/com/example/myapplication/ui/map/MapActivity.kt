@@ -3,11 +3,13 @@ package com.example.myapplication.ui.map
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.myapplication.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -15,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
@@ -23,39 +26,42 @@ import okhttp3.Request
 import org.json.JSONObject
 
 /**
- * Activité principale pour afficher la carte et le tracé d'itinéraire.
+ * Activité pour afficher une carte centrée sur la localisation actuelle et tracer un itinéraire.
  */
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // Carte Google Map
     private lateinit var googleMap: GoogleMap
 
-    // Service de localisation pour obtenir la position actuelle
+    // Service de localisation
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    // Éléments de l'interface utilisateur
-    private lateinit var tvDuration: TextView
+    // Éléments d'interface
     private lateinit var btnDrive: Button
     private lateinit var btnWalk: Button
+    private lateinit var tvDuration: TextView
 
-    // Variables pour le mode de transport et la couleur du tracé
+    // Code de la permission
+    private val LOCATION_PERMISSION_REQUEST = 1001
+
+    // Mode de transport et couleur du tracé
     private var mode: String = ""
     private var polylineColor: Int = 0
 
-    // Destination fixe : Toulouse
+    // Destination : Capitole, Toulouse
     private val destination = LatLng(43.6045, 1.4442)
 
     /**
-     * Méthode appelée lors de la création de l'activité.
+     * Méthode appelée à la création de l'activité.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
-        // Initialisation des éléments d'interface
-        tvDuration = findViewById(R.id.tvDuration)
+        // Initialisation des composants
         btnDrive = findViewById(R.id.btnDrive)
         btnWalk = findViewById(R.id.btnWalk)
+        tvDuration = findViewById(R.id.tvDuration)
 
         // Initialisation du service de localisation
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -64,37 +70,88 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        // Configuration des boutons
         setupButtons()
     }
 
     /**
      * Méthode appelée lorsque la carte est prête.
-     * @param map La carte Google Map initialisée.
      */
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
+        Log.d("MapActivity", "Carte initialisée")
 
-        // Ajoute un marqueur à la position de destination (Toulouse)
-        googleMap.addMarker(MarkerOptions().position(destination).title("Destination"))
+        // Active la localisation
+        enableMyLocation()
 
-        // Zoom sur la destination
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(destination, 13f))
+        // Marqueur pour le magasin (destination)
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(destination)
+                .title("Magasin")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+        )
     }
 
     /**
-     * Configuration des boutons "Voiture" et "À Pied".
-     * Lorsqu'un bouton est cliqué, le mode est défini et la requête est envoyée.
+     * Active la localisation de l'utilisateur et centre la carte.
+     */
+    private fun enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+            googleMap.isMyLocationEnabled = true
+
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null) {
+                    val userLatLng = LatLng(location.latitude, location.longitude)
+                    Log.d("MapActivity", "Localisation actuelle : ${location.latitude}, ${location.longitude}")
+
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15f))
+
+                    googleMap.addMarker(
+                        MarkerOptions()
+                            .position(userLatLng)
+                            .title("Vous êtes ici")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    )
+
+                } else {
+                    Log.e("MapActivity", "Localisation non disponible")
+                    Toast.makeText(this, "Localisation non disponible", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        } else {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST)
+        }
+    }
+
+    /**
+     * Gère la demande de permission.
+     */
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == LOCATION_PERMISSION_REQUEST) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                enableMyLocation()
+            } else {
+                Toast.makeText(this, "Permission de localisation refusée", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    /**
+     * Configuration des boutons pour choisir le mode de transport.
      */
     private fun setupButtons() {
         btnDrive.setOnClickListener {
-            mode = "driving"  // Mode voiture
+            mode = "driving"
             polylineColor = resources.getColor(R.color.purple_500)
             fetchRoute()
         }
 
         btnWalk.setOnClickListener {
-            mode = "walking"  // Mode à pied
+            mode = "walking"
             polylineColor = resources.getColor(R.color.orange_500)
             fetchRoute()
         }
@@ -102,87 +159,72 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     /**
      * Récupère l'itinéraire entre la position actuelle et la destination.
-     * Utilise l'API Google Directions.
      */
     private fun fetchRoute() {
-
-        // Vérifie les permissions de localisation
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
             return
         }
 
-        // Obtention de la localisation actuelle
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
-
-                // Coordonnées de départ (position actuelle)
                 val start = LatLng(location.latitude, location.longitude)
 
-                // URL pour la requête API Google Directions
                 val url = "https://maps.googleapis.com/maps/api/directions/json?origin=${start.latitude},${start.longitude}&destination=${destination.latitude},${destination.longitude}&mode=$mode&language=fr&key=AIzaSyBJiAGj9uTDO9HfFQVuJNciN5almTzVZtY"
-
-                // Création de la requête HTTP
-                val client = OkHttpClient()
-                val request = Request.Builder().url(url).build()
-
-                // Exécution de la requête API dans un thread secondaire
-                Thread {
-                    try {
-                        val response = client.newCall(request).execute()
-                        val jsonData = response.body?.string()
-
-                        // Vérifie que la réponse n'est pas vide
-                        if (!jsonData.isNullOrEmpty()) {
-
-                            // Analyse de la réponse JSON
-                            val routes = JSONObject(jsonData).optJSONArray("routes")
-
-                            // Si des routes sont trouvées
-                            if (routes != null && routes.length() > 0) {
-
-                                // Extraction des informations de durée et de tracé
-                                val leg = routes.getJSONObject(0).getJSONArray("legs").getJSONObject(0)
-                                val duration = leg.getJSONObject("duration").getString("text")
-                                val polyline = routes.getJSONObject(0).getJSONObject("overview_polyline").getString("points")
-
-                                // Mise à jour de l'interface utilisateur (UI) dans le thread principal
-                                runOnUiThread {
-                                    tvDuration.text = "Durée estimée : $duration"
-                                    drawPolyline(polyline)  // Tracé du chemin
-                                }
-                            }
-                        }
-                    } catch (e: Exception) {
-                        // En cas d'erreur, affiche un message d'erreur
-                        runOnUiThread {
-                            Toast.makeText(this, "Erreur de connexion", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }.start()
+                sendRequest(url)
 
             } else {
-                // Si la localisation est nulle, affiche un message
                 Toast.makeText(this, "Localisation non disponible", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     /**
-     * Trace le chemin sur la carte en utilisant le polyline encodé.
-     * @param encodedPath Le tracé encodé reçu de l'API Google Directions.
+     * Envoie la requête pour récupérer le tracé.
+     */
+    private fun sendRequest(url: String) {
+        val client = OkHttpClient()
+        val request = Request.Builder().url(url).build()
+
+        Thread {
+            try {
+                val response = client.newCall(request).execute()
+                val jsonData = response.body?.string()
+
+                if (!jsonData.isNullOrEmpty()) {
+                    val routes = JSONObject(jsonData).optJSONArray("routes")
+                    if (routes != null && routes.length() > 0) {
+                        val leg = routes.getJSONObject(0).getJSONArray("legs").getJSONObject(0)
+                        val duration = leg.getJSONObject("duration").getString("text")
+                        val polyline = routes.getJSONObject(0).getJSONObject("overview_polyline").getString("points")
+
+                        runOnUiThread {
+                            tvDuration.text = "Durée estimée : $duration"
+                            drawPolyline(polyline)
+                        }
+                    } else {
+                        runOnUiThread {
+                            Toast.makeText(this, "Aucun itinéraire trouvé", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+            } catch (e: Exception) {
+                Log.e("MapActivity", "Erreur : ${e.message}")
+            }
+        }.start()
+    }
+
+    /**
+     * Trace le chemin sur la carte.
      */
     private fun drawPolyline(encodedPath: String) {
-        // Décodage du tracé encodé
         val path = com.google.maps.android.PolyUtil.decode(encodedPath)
-
-        // Si le tracé est valide, l'ajouter à la carte
         if (path.isNotEmpty()) {
             googleMap.addPolyline(
                 PolylineOptions()
-                    .addAll(path)          // Liste des points du tracé
-                    .color(polylineColor)  // Couleur selon le mode (voiture ou marche)
-                    .width(8f)             // Largeur du tracé
+                    .addAll(path)
+                    .color(polylineColor)
+                    .width(8f)
             )
         }
     }
