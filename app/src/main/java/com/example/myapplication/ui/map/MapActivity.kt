@@ -26,7 +26,9 @@ import okhttp3.Request
 import org.json.JSONObject
 
 /**
- * Activité pour afficher une carte centrée sur la localisation actuelle et tracer un itinéraire.
+ * MapActivity
+ * Cette activité affiche une carte centrée sur la localisation actuelle et permet
+ * de tracer un itinéraire vers une destination prédéfinie.
  */
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -36,29 +38,29 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     // Service de localisation
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    // Éléments d'interface
+    // Éléments d'interface utilisateur
     private lateinit var btnDrive: Button
     private lateinit var btnWalk: Button
     private lateinit var tvDuration: TextView
 
-    // Code de la permission
+    // Code de la permission pour la localisation
     private val LOCATION_PERMISSION_REQUEST = 1001
 
     // Mode de transport et couleur du tracé
     private var mode: String = ""
     private var polylineColor: Int = 0
 
-    // Destination : Capitole, Toulouse
+    // Destination : Capitole, Toulouse (Lat, Lng)
     private val destination = LatLng(43.6045, 1.4442)
 
     /**
-     * Méthode appelée à la création de l'activité.
+     * Méthode appelée lors de la création de l'activité.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
-        // Initialisation des composants
+        // Initialisation des composants d'interface
         btnDrive = findViewById(R.id.btnDrive)
         btnWalk = findViewById(R.id.btnWalk)
         tvDuration = findViewById(R.id.tvDuration)
@@ -70,20 +72,21 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        // Configuration des boutons
         setupButtons()
     }
 
     /**
-     * Méthode appelée lorsque la carte est prête.
+     * Méthode appelée lorsque la carte est prête à être utilisée.
      */
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
         Log.d("MapActivity", "Carte initialisée")
 
-        // Active la localisation
+        // Active la localisation de l'utilisateur
         enableMyLocation()
 
-        // Marqueur pour le magasin (destination)
+        // Ajoute un marqueur à la destination
         googleMap.addMarker(
             MarkerOptions()
                 .position(destination)
@@ -93,20 +96,25 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Active la localisation de l'utilisateur et centre la carte.
+     * Active la localisation de l'utilisateur et centre la carte sur sa position.
      */
     private fun enableMyLocation() {
+        // Vérifie si la permission de localisation est accordée
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
+            // Active le bouton de localisation sur la carte
             googleMap.isMyLocationEnabled = true
 
+            // Récupère la localisation actuelle
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
                     val userLatLng = LatLng(location.latitude, location.longitude)
                     Log.d("MapActivity", "Localisation actuelle : ${location.latitude}, ${location.longitude}")
 
+                    // Centre la carte sur la localisation actuelle
                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15f))
 
+                    // Ajoute un marqueur pour la localisation actuelle
                     googleMap.addMarker(
                         MarkerOptions()
                             .position(userLatLng)
@@ -121,12 +129,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
         } else {
+            // Demande la permission de localisation
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST)
         }
     }
 
     /**
-     * Gère la demande de permission.
+     * Gère la réponse de la demande de permission.
      */
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -141,7 +150,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Configuration des boutons pour choisir le mode de transport.
+     * Configuration des boutons "Voiture" et "À pied".
      */
     private fun setupButtons() {
         btnDrive.setOnClickListener {
@@ -165,6 +174,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             return
         }
 
+        // Récupère la localisation actuelle
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
                 val start = LatLng(location.latitude, location.longitude)
@@ -179,7 +189,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Envoie la requête pour récupérer le tracé.
+     * Envoie la requête à l'API Directions pour obtenir le tracé et la durée.
      */
     private fun sendRequest(url: String) {
         val client = OkHttpClient()
@@ -197,6 +207,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                         val duration = leg.getJSONObject("duration").getString("text")
                         val polyline = routes.getJSONObject(0).getJSONObject("overview_polyline").getString("points")
 
+                        // Met à jour l'interface utilisateur
                         runOnUiThread {
                             tvDuration.text = "Durée estimée : $duration"
                             drawPolyline(polyline)
